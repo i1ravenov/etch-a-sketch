@@ -16,7 +16,10 @@ const colorInput = $('#picker');
 const rainbow = $("#rainbow");
 
 colorInput.addEventListener('change', (e) => { color = e.target.value });
-resetButton.addEventListener('click', (e) => setGrid(sizeSlider.value));
+resetButton.addEventListener('click', (e) => {
+	setGrid(sizeSlider.value);
+	color = DEFAULT_COLOR;
+});
 eraseButton.addEventListener('click', (e) => { color = BG_COLOR });
 chooseButton.addEventListener('click', (e) => { color = colorInput.value });
 rainbow.addEventListener('click', (e) => color = 'rainbow');
@@ -30,9 +33,9 @@ sizeSlider.addEventListener("input", (e) => {
 
 
 function setGrid(dim) {
-	const CONTAINER_WIDTH = $(".container").clientHeight;
-	const BLOCK_WIDTH = Math.floor(CONTAINER_WIDTH / dim);
 	const container = $(".container");
+	const CONTAINER_WIDTH = container.clientHeight;
+	const BLOCK_WIDTH = Math.floor(CONTAINER_WIDTH / dim);
 	container.innerHTML = "";
 	for (let i = 0; i < dim; i++) {
 		for (let j = 0; j < dim; j++) {
