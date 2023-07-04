@@ -6,7 +6,7 @@ const value = $("#value");
 const sizeSlider = $("#size-slider");
 value.textContent = sizeSlider.value;
 const DEFAULT_COLOR = 'black';
-const BG_COLOR = 'aqua';
+const BG_COLOR = 'white';
 let color = DEFAULT_COLOR;
 
 const resetButton = $("#reset");
@@ -34,15 +34,13 @@ sizeSlider.addEventListener("input", (e) => {
 
 function setGrid(dim) {
 	const container = $(".container");
-	const CONTAINER_WIDTH = container.clientHeight;
-	const BLOCK_WIDTH = Math.floor(CONTAINER_WIDTH / dim);
 	container.innerHTML = "";
+	container.style.gridTemplateColumns = `repeat(${dim}, 1fr)`;
+	container.style.gridTemplateRows = `repeat(${dim}, 1fr)`;
 	for (let i = 0; i < dim; i++) {
 		for (let j = 0; j < dim; j++) {
 			const div = document.createElement('div');
 			div.classList.add('block');
-			div.style.width = BLOCK_WIDTH + "px";
-			div.style.height = BLOCK_WIDTH + "px";
 			div.addEventListener('mouseover', (e) => {
 				if (color === 'rainbow') {
 					e.target.style['background-color'] = randomColor();
